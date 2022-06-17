@@ -1,0 +1,20 @@
+import ShoppingList from './ShoppingList';
+import useFetch from './useFetch';
+
+const Home = () => {
+
+  const {data: lists} = useFetch(`http://localhost:8080/raps/lists/fetchLists`)
+
+  return(
+      <div className="home">
+        <div className="list-month">
+          <h1 style={{
+            margin:"30px"
+          }}>Shopping Lists</h1>
+        </div>
+        {lists && <ShoppingList lists={lists}></ShoppingList>}
+      </div>
+  ) ;
+};
+
+export default Home;
