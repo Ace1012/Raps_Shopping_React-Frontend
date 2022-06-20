@@ -37,6 +37,12 @@ const ShoppingList = (props:any) => {
 
               {selected === list.id && list.items.length > 0 ? (
                 <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1}} className="content">
+                  {/* <div className="item">
+                    <p style={{
+                      fontWeight:"700",
+                      fontSize:"20px"
+                    }}>Number of items in List: {list.items.length}</p>
+                  </div> */}
                 {list.items && list.items.map((item:any) => (
                   <div className="item" key={item.id}>
                     <h2>{item.name}</h2>

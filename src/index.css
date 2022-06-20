@@ -246,7 +246,7 @@ body{
   display: flex;
   max-height: fit-content;
   width: 100%;
-  background: red;
+  /* background: red; */
   margin-bottom: 100px;
 }
 
@@ -260,17 +260,17 @@ body{
   height: 80vh;
   top: 10%;
   right: 0;
-  background-color: blue;
-  padding: 8px;
+  /* background-color: blue;
+  padding: 8px; */
 }
 
 .shopping-cart{
-  position: sticky;
+  position: fixed;
   /* margin-top: 5vh;
   margin-bottom: 5vh; */
   display: flex;
-  top: 50%;
   right: 0;
+  bottom: 10%;
   background: lightgray;
   color: black;
   font-weight: 700;
@@ -283,12 +283,20 @@ body{
 
 .shopping-cart-content{
   margin: auto;
+  flex-basis: content;
+  background-color: red;
+}
+
+.add-items{
+  position: absolute;
+  bottom: 1vh;
+  right: 0.5vw;
 }
 
 .category-items{
-  background-color: orange;
+  /* background-color: orange; */
   margin: auto;
-  /* margin-left: 1vw; */
+  margin-left: 34.5vw;
   margin-top: 13vh;
   font-size: larger;
   font-weight: 800;
@@ -299,6 +307,8 @@ body{
   justify-content: space-between;
   padding: 10px;
   background: linear-gradient(to left, lightgrey 50%, rosybrown 50%);
+  /* background-color: rosybrown;
+  color: white; */
   border: 1px solid black;
   border-radius: 8px;
   cursor: pointer;
@@ -340,6 +350,56 @@ body{
   width: 80%;
   margin: 0 auto;
 }
+.list-details .item{
+  display: flex;
+  justify-content: space-between;
+  background-color: grey;
+  color: black;
+  border-radius: 8px;
+  border: 1px solid black;
+  margin: 1vh;
+  padding: 8px;
+}
+.list-details .item:hover{
+  background-color: rosybrown;
+  color: white;
+}
+.item .checkbox-container{
+  margin: auto 0;
+  border: 1px solid black;
+  border-radius: 8px;
+  height: 5vh;
+  width: 5vh;
+}
+input[type=checkbox]:checked+label::before{
+  content: "";
+  display: block;
+  background-color: red;
+  text-align: center;
+}
+/* input[type=checkbox]:checked+label::before {
+  content: "";
+  display: block;
+  position: absolute;
+  text-align: center;
+  height: 20px;
+  width: 20px;
+  left: 0;
+  top: 5px;
+  background-color: #FA9E57;
+  font-family: "Montserrat";
+  border-radius: 2px;
+  border: 1px solid rgb(150 150 150 / 30%);
+} */
+.checkbox{
+  min-height: 90%;
+  min-width: 90%;
+  border-radius: 8px;
+}
+/* .item h2{
+  position: fixed;
+  margin-left: 1vw;
+} */
 .list-details-nav button:nth-child(n){
   min-height: 1vh;
   min-width: 1vw;

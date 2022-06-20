@@ -1,4 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
+import Item from "./item";
+import ItemTotal from "./ItemTotal";
 import useFetch from "./useFetch";
 
 const ListDetails = () => {
@@ -7,12 +9,12 @@ const ListDetails = () => {
   const listId = param.id;
 
   const navigate = useNavigate();
-
-  console.log(listId)
   
   const {data: list}:any = useFetch("http://localhost:8080/raps/lists/fetchList?id=" + listId)
-  console.log("List is")
-  console.log(list)
+  console.log(list);
+  
+  
+  const total = list && ItemTotal(list)
 
   const goHome = () => {
     navigate("/home")
@@ -27,16 +29,15 @@ const ListDetails = () => {
           </div>
           {list && list.items && list.items.length > 0 ? 
             list.items.map((item:any) => (
-              <div className="item" key={item.id}>
-                <h2>{item.name}</h2>
-                <p>Type: {item.category.name}</p>
-              </div>
+              <Item item={item} key={item.id}></Item>
             )) :
             <div className="item">
               <h1>No Items!</h1>
             </div>
           }
-          
+          <p>The total is <span style={{
+            fontWeight:"700"
+          }}>{total}</span></p>
       </div>
   ) ;
 };
