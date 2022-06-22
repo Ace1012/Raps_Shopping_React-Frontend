@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Category from "./category";
+import { ICategory, Item } from "./interface";
 import ShoppingCart from "./ShoppingCart";
 import useFetch from "./useFetch";
 
@@ -10,45 +11,37 @@ export const ShoppingCartItemList = React.createContext<any>([]);
 
 const CategoryItems = () => {
 
-    const {data: categoryItems}:any = useFetch("http://localhost:8080/raps/categories/fetchCategoryItems");
-    const [selected, setSelected] = useState(null);
+    const {data:categoryItems} = useFetch("http://localhost:8080/raps/categories/fetchCategoryItems");
     const [x, setX] = useState("");
-    const [items, setItems] = useState<any>([]);
-    const [checked, setChecked] = useState();
+    const [items, setItems] = useState<Item[]>([]);
+    const [selected, setSelected] = useState();
 
     const params = useParams()
     const listName = params.listName;
-    console.log(...items);
+    // console.log(...items);
+    // console.log(x);
 
-    function testContext(i:string){
-      setItems(([...items, i]))
-      console.log(...items);
-    }
+    useEffect(() => {
+      console.log(items);
+    },[items])
 
-
-    function toggleCategory (i:any, controls:AnimationControls) {
-        // controls.set({
-        //     opacity:0
-        // })
-        // controls.start({
-        //     opacity:1
-        // })
     
-        if(selected === i){
-            return setSelected(null);
-        }else{
-            setSelected(i);
-        }
-      }
+    
+
+    // function testContext(i:string){
+    //   setItems(([...items, i]))
+    //   console.log(...items);
+    // }
 
   return (
-      <ShoppingCartItemList.Provider value={{checked, setChecked, items, setItems}}>
+      <ShoppingCartItemList.Provider value={{selected, setSelected, items, setItems}}>
         <div className="category-items-container">
+
         <motion.div className="category-items">
         <h1>Editing {listName}'s Shopping List</h1>
-        {x && <h2>{items}</h2>}
-          {categoryItems && categoryItems.map((category:any) => (
-            <Category category={category} testContext={testContext} toggleCategory={toggleCategory} categoryId={category.id} key={category.id}/>
+        {x && <h2>{x}</h2>}
+          {categoryItems && categoryItems.map((category:ICategory) => (
+            <Category category={category} categoryId={category.id} key={category.id}/>
           ))}
         </motion.div>
 

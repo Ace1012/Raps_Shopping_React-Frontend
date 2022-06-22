@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import {fetchedData  } from "./interface";
+
+
 
 export const useFetch = (url:string) => {
 
-    const [data, setData]    = useState(null)
-    const [isPending, setIsPending] = useState(true)
-    const [error, setError] = useState(null)
+    const [data, setData] = useState<fetchedData>()
+    const [isPending, setIsPending] = useState<boolean>(true)
+    const [error, setError] = useState<string>("")
 
     useEffect(() => {
 
@@ -20,7 +23,7 @@ export const useFetch = (url:string) => {
             .then((data) => {
                 setData(data);
                 setIsPending(false)
-                setError(null)
+                setError("")
             })
             .catch((err) => {
                 if(err.name === `AbortError`){
@@ -36,8 +39,6 @@ export const useFetch = (url:string) => {
           }
 
     }, [url])
-
-    // console.log(data)
 
     return {data, isPending, error}
 

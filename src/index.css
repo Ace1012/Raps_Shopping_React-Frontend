@@ -275,7 +275,7 @@ body{
   color: black;
   font-weight: 700;
   height: 80vh;
-  width: 15vw;
+  width: 18vw;
   border: 1px black solid;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -284,13 +284,47 @@ body{
 .shopping-cart-content{
   margin: auto;
   flex-basis: content;
-  background-color: red;
+  /* background-color: red; */
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.quantity-arrow{
+  color: white;
+  height: 20px;
+  width: 30px;
+}
+
+.quantity-arrow:hover{
+  color: black;
+}
+
+#checkbox{
+  height: 20px;
+  width: 20px;
 }
 
 .add-items{
   position: absolute;
   bottom: 1vh;
-  right: 0.5vw;
+  left: 2vw;
+  /* background-color: red; */
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.add-items button{
+  background-color: lightgray;
+  color: black;
+  border-radius: 5px;
+  height: 3vh;
+}
+
+.add-items p{
+  margin: auto;
+  margin-right: 0;
 }
 
 .category-items{
@@ -338,14 +372,16 @@ body{
 }
 .list-details{
   margin-top: 100px;
-  /* background-color: blue; */
-  width: 80vw;
+  background-color: rgb(170, 145, 145);
+  border: 2px solid black;
+  border-radius: 16px;
+  width: 40vw;
   margin: auto;
-  padding: 1em;
+  padding: 2em;
 }
 .list-details-nav{
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: space-evenly;
   width: 80%;
   margin: 0 auto;
