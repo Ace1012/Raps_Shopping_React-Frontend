@@ -2,23 +2,28 @@ import { motion, useAnimation } from 'framer-motion';
 import { useContext} from 'react';
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
 import { ShoppingCartItemList } from './CategoryItems';
-import { Item } from './interface';
+import { CartItem, Item } from './interface';
 
 const Category = (props:any) => {
-    const {items, setItems, selected, setSelected} = useContext(ShoppingCartItemList)
+    const {selected, setSelected, cartItems, setCartItems} = useContext(ShoppingCartItemList)
     const controls = useAnimation();
 
     const category = props.category;
     const id = props.category.id;
 
-    const editItemsList = (checkBoxState:boolean, i:Item) => {
+    const editItemsList = (checkBoxState:boolean, item:Item) => {
         if(checkBoxState){
-            console.log("It is checked!");
-            setItems([...items, i])
+            console.log("Checked!");
+            var cartItem:CartItem = {
+                id: item.id,
+                item: item,
+                quantity: 1
+            }
+            setCartItems([...cartItems, cartItem])
         }else{
-            console.log("It isn't checked!");
-            var tempItems = items.filter((item:Item) => item !== i);
-            setItems(tempItems)
+            console.log("Unchecked!");
+            var tempCartItems = cartItems.filter((cartItem:CartItem) => cartItem.item !== item)
+            setCartItems(tempCartItems)
         }
     }
 
@@ -27,6 +32,31 @@ const Category = (props:any) => {
             return setSelected(null)
         }else{
             setSelected(i);
+        }
+    }
+
+    const checkCartItems = (item:Item) =>{
+        for(var cartItem of cartItems){
+            if(cartItem.item === item){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const editItemQuantity = (item:Item, delta:number) =>{
+        const cartItemsCopy = cartItems.slice()
+        for(var cartItem of cartItemsCopy){
+            if(cartItem.item === item){
+                cartItem.quantity += delta;
+                console.log(cartItem);
+                if(cartItem.quantity <= 0){
+                    var tempCartItems = cartItems.filter((cartItem:CartItem) => cartItem.item !== item)
+                    setCartItems(tempCartItems)
+                }else{
+                    setCartItems(cartItemsCopy)
+                }
+            }
         }
     }
     
@@ -42,13 +72,20 @@ const Category = (props:any) => {
                 <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:0.6}} className="item" key={item.id}>
                     <span>{item.name}</span>
                     <div>
-                    <FaArrowUp className='quantity-arrow' style={{
+                    {checkCartItems(item) && <FaArrowUp onClick={() => editItemQuantity(item, 1)} className='quantity-arrow' style={{
                         marginRight:"5px"
-                    }}></FaArrowUp>
-                    <input id="checkbox" type="checkbox" value={item.name} checked={items.includes(item)} onChange={(e) => editItemsList(e.target.checked, item)}/>
-                    <FaArrowDown className='quantity-arrow' style={{
+                    }}></FaArrowUp>}
+
+                    <input 
+                    id="checkbox" 
+                    type="checkbox" 
+                    value={item.name} 
+                    checked={checkCartItems(item)}
+                    onChange={(e) => editItemsList(e.target.checked, item)}/>
+
+                    {checkCartItems(item) && <FaArrowDown onClick={() => editItemQuantity(item, -1)} className='quantity-arrow' style={{
                         marginLeft:"5px"
-                    }}></FaArrowDown>
+                    }}></FaArrowDown>}
                     </div>
                 </motion.div>
             ))

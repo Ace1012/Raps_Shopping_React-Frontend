@@ -25,7 +25,7 @@ const ListDetails = () => {
           <div className="list-details-nav">
             <button onClick={goHome}>Go back</button>
             {list && <h1>{list.name}</h1>}
-            {list && <Link to={`/categoryItems/${list.name}`}><button>Add Items</button></Link>}
+            {list && <Link state={list} to={`/categoryItems/${list.name}`}><button>Add Items</button></Link>}
           </div>
           {list && list.items && list.items.length > 0 ? 
             list.items.map((item:any) => (

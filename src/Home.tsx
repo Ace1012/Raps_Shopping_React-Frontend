@@ -1,4 +1,4 @@
-import ShoppingList from './ShoppingList';
+import ShoppingList from './ShoppingLists';
 import useFetch from './useFetch';
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
         </div>
         {lists && <ShoppingList lists={lists}></ShoppingList>}
       </div>
-  ) ;
+  );
 };
 
 export default Home;

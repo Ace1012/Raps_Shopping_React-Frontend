@@ -5,7 +5,7 @@ import Home from './Home';
 import ListDetails from './ListDetails';
 import Login from './login';
 import NavBar from './navbar';
-import ShoppingList from './ShoppingList';
+import ShoppingList from './ShoppingLists';
 
 
 function App() {

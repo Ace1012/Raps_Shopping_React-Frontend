@@ -9,12 +9,25 @@ export interface Item{
     stock:number;
     price:number;
     category:ICategory;
+    quantity?:number;
 }
 
 export interface ICategoryItem{
     id:number;
     name:string;
     items:Item[];
+}
+
+export interface CartItem{
+    id:number;
+    item:Item;
+    quantity:number;
+}
+
+export interface IList{
+    id:number;
+    name:string;
+    items:Item[]
 }
 
 export type fetchedData = Item & Item[] & ICategory & ICategory[] & ICategoryItem[];

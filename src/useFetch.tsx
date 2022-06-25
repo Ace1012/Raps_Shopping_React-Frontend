@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import {fetchedData  } from "./interface";
 
-
-
 export const useFetch = (url:string) => {
 
     const [data, setData] = useState<fetchedData>()

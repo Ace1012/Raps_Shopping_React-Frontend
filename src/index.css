@@ -112,7 +112,6 @@ body{
 }
 .shopping-list .list{
   height: max-content;
-  /* flex: 0 1 26.9589%; */
   flex: 0 1 22vw;
   padding: 20px;
   margin:30px;
@@ -167,13 +166,12 @@ body{
   justify-content: space-between;
   align-items: center;
 }
-.shopping-list .item{
+.shopping-list .list-content{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: black;
   margin-bottom: 10%;
   margin-top: 10%;
+  /* background-color: blue; */
 }
 .no-items{
   margin-top: 20px;
@@ -328,10 +326,11 @@ body{
 }
 
 .category-items{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   /* background-color: orange; */
-  margin: auto;
-  margin-left: 34.5vw;
-  margin-top: 13vh;
   font-size: larger;
   font-weight: 800;
   /* padding: 8px; */
@@ -348,22 +347,20 @@ body{
   cursor: pointer;
 }
 .category-items .category{
-  width: 60%;
+  min-width: 60%;
+  max-width: fit-content;
   height: max-content;
   margin: auto;
-  margin-right: 25%;
-  margin-top: 10px;
-  margin-bottom: 10px;
   padding: 8px;
 }
 .category-items .category .item{
-  background: rosybrown;
+  background: rgb(195, 160, 160);
   color: black;
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 80%;
   display: flex;
+  width: 80%;
   justify-content: space-between;
   padding: 20px;
   border: 2px solid black;
@@ -372,7 +369,8 @@ body{
 }
 .list-details{
   margin-top: 100px;
-  background-color: rgb(170, 145, 145);
+  /* background-color: rgb(170, 145, 145); */
+  background-color: lightgrey;
   border: 2px solid black;
   border-radius: 16px;
   width: 40vw;
@@ -389,16 +387,16 @@ body{
 .list-details .item{
   display: flex;
   justify-content: space-between;
-  background-color: grey;
-  color: black;
+  background-color: rosybrown;
+  color: white;
   border-radius: 8px;
   border: 1px solid black;
   margin: 1vh;
   padding: 8px;
 }
 .list-details .item:hover{
-  background-color: rosybrown;
-  color: white;
+  /* background-color: grey; */
+  background-color: rgb(141, 108, 108);
 }
 .item .checkbox-container{
   margin: auto 0;
@@ -406,12 +404,6 @@ body{
   border-radius: 8px;
   height: 5vh;
   width: 5vh;
-}
-input[type=checkbox]:checked+label::before{
-  content: "";
-  display: block;
-  background-color: red;
-  text-align: center;
 }
 /* input[type=checkbox]:checked+label::before {
   content: "";
