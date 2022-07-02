@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import {fetchedData  } from "./interface";
 
-export const useFetch = (url:string) => {
+export const useFetch = <T>(url:string) => {
 
-    const [data, setData] = useState<fetchedData>()
+    const [data, setData] = useState<T>()
     const [isPending, setIsPending] = useState<boolean>(true)
     const [error, setError] = useState<string>("")
 
@@ -38,7 +37,7 @@ export const useFetch = (url:string) => {
 
     }, [url])
 
-    return {data, isPending, error}
+    return {data, isPending, error};
 
 }
 

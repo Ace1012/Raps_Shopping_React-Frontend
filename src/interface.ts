@@ -30,4 +30,8 @@ export interface IList{
     items:Item[]
 }
 
-export type fetchedData = Item & Item[] & ICategory & ICategory[] & ICategoryItem[];
+export interface IUseFetchData{
+    data: Item | Item[] | ICategory | ICategory[] | ICategoryItem[];
+    isPending: boolean;
+    error: string;
+}

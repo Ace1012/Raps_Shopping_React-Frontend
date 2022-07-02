@@ -1,4 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { IList } from "./interface";
 import Item from "./item";
 import ItemTotal from "./ItemTotal";
 import useFetch from "./useFetch";
@@ -10,7 +11,7 @@ const ListDetails = () => {
 
   const navigate = useNavigate();
   
-  const {data: list}:any = useFetch("http://localhost:8080/raps/lists/fetchList?id=" + listId)
+  const {data: list} = useFetch<IList>("http://localhost:8080/raps/lists/fetchList?id=" + listId)
   console.log(list);
   
   

@@ -1,9 +1,10 @@
+import { IList } from './interface';
 import ShoppingList from './ShoppingLists';
 import useFetch from './useFetch';
 
 const Home = () => {
 
-  const {data: lists} = useFetch(`http://localhost:8080/raps/lists/fetchLists`)
+  const {data: lists} = useFetch<IList>(`http://localhost:8080/raps/lists/fetchLists`)
 
   return(
       <div className="home">

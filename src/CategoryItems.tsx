@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import Category from "./category";
-import { CartItem, ICategory, IList, Item } from "./interface";
+import { CartItem, ICategory, ICategoryItem, IList, Item } from "./interface";
 import ShoppingCart from "./ShoppingCart";
 import useFetch from "./useFetch";
 
@@ -12,15 +12,13 @@ export const ShoppingCartItemList = React.createContext<any>([]);
 const CategoryItems = () => {
     const location = useLocation();
 
-    const {data:categoryItems} = useFetch("http://localhost:8080/raps/categories/fetchCategoryItems");
+    const {data:categoryItems} = useFetch<ICategoryItem[]>("http://localhost:8080/raps/categories/fetchCategoryItems");
     const [items, setItems] = useState<Item[]>([]);
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [selected, setSelected] = useState();
 
     const list = location.state as IList;
     const listName = list.name
-    // const params = useParams();
-    // const listName = params.listName;
 
     useEffect(() => {
       console.log(items);

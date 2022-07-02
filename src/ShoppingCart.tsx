@@ -1,33 +1,11 @@
 import { motion } from 'framer-motion';
 import { useContext, useEffect, useState } from 'react';
 import { ShoppingCartItemList } from './CategoryItems';
-import { CartItem, Item } from './interface';
+import { CartItem } from './interface';
 
 const ShoppingCart = (props:any) => {
-
-  // const [test, setTest] = useState("Empty Title")
-  const {items, setItems, cartItems, setCartItems} = useContext(ShoppingCartItemList);
+  const {cartItems, setCartItems} = useContext(ShoppingCartItemList);
   const [sum, setSum] = useState(0);
-
-  // useEffect(()=>{
-  //   calcSum();
-  // },[items])
-
-  // const calcSum = () => {
-  //   var sum = 0;
-  //   for(var item of items){
-  //     sum += item.price
-  //   }
-  //   setSum(sum)
-  // }
-
-  // const clearItems = () => {
-  //   setItems([])
-  // } 
-
-  useEffect(()=>{
-    calcSum();
-  },[cartItems])
 
   const calcSum = () => {
     var sum = 0;
@@ -39,12 +17,11 @@ const ShoppingCart = (props:any) => {
 
   const clearItems = () => {
     setCartItems([])
-  } 
+  }
 
-  // useEffect(() => {
-  //   console.log(test);
-  //   setX(test)
-  // },[test])
+  useEffect(()=>{
+    calcSum();
+  },[cartItems])
 
   return(
     <motion.div layout transition={{layout: {duration:0.7, type:"spring"}}} className="shopping-cart">

@@ -13,9 +13,6 @@ const Login = () => {
 
         const loginDetails = {username, password}
 
-        console.log(username)
-        console.log(password)
-
         setIsPending(true)
 
         fetch('http://localhost:8080/raps/users/login', {
@@ -27,7 +24,7 @@ const Login = () => {
             setIsPending(false)
             return response.json();
         }).then((data) => {
-            console.log(`Error is`)
+            console.log(`Data is`)
                 
             console.log(data);
             if(data.authorized === true){
